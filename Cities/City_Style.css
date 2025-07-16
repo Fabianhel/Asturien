@@ -20,3 +20,24 @@ html, body {
   border-radius: 4px;
   z-index: 1000;
 }
+
+.blocksatz {
+  text-align: justify;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.header-row h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.header-row img {
+  height: 80px;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
