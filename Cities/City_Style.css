@@ -1,11 +1,9 @@
 html, body {
   margin: 1rem;
   padding: 0;
-  height: 100%;
   font-family: sans-serif;
-  background: transparent; /* keep transparent so main page bg shows */
-  color: black; /* adjust text color for contrast */
-  overflow: hidden;
+  background: transparent;
+  color: black;
 }
 
 #close-btn {

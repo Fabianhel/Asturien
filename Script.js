@@ -27,10 +27,12 @@ $(document).ready(function () {
 	function showIframe(src) {
 		$("#iframe-container").show();
 		$("#info-frame").attr("src", src);
+		$("#info-frame").css("pointer-events", 'auto');
 	}
 	function hideIframe() {
 		$("#iframe-container").hide();
 		$("#info-frame").attr("src", "");
+		$("#info-frame").css("pointer-events", 'none');
 	}
   
 
@@ -85,13 +87,12 @@ $(document).ready(function () {
 		const top = ((windowHeight - mapHeight) / 2)-100;
 
 		$wrapper.css({ left: left + "px", top: top + "px" });
-		scale = 0.5;
+		scale = 0.3;
 		$wrapper.css("transform", `scale(${scale})`);
 	}
-	centerMap(); // Call on load
   
 	// Zoom logic
-	const minScale = 0.5;
+	const minScale = 0.05;
 	const maxScale = 3;
 	const zoomIntensity = 0.1;
 	$("#main-content").on("wheel", function (e) {
@@ -116,5 +117,6 @@ $(document).ready(function () {
 	});
 
 
+	centerMap(); // Call on load
 		
 });

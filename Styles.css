@@ -1,12 +1,12 @@
 /* Invisible clickable regions */
-.valblanc-click     { left: 50.46%; top: 52.70%; }
-.fleuret-click      { left: 60.00%; top: 52.89%; }
-.dreibach-click     { left: 65.85%; top: 54.70%; }
-.fortresse-click    { left: 71.60%; top: 51.60%; }
-.grenzwacht-click   { left: 47.40%; top: 55.53%; }
-.hautville-click    { left: 45.20%; top: 47.70%; }
-.blutsumpf-click    { left: 53.75%; top: 45.45%; }
-.steinhof-click     { left: 55.55%; top: 58.28%; }
+.valblanc-click     { left: 33.35%; top: 48.37%; }
+.fleuret-click      { left: 36.13%; top: 48.45%; }
+.dreibach-click     { left: 37.85%; top: 49.00%; }
+.fortresse-click    { left: 39.55%; top: 48.05%; }
+.grenzwacht-click   { left: 32.45%; top: 49.20%; }
+.hautville-click    { left: 31.83%; top: 46.85%; }
+.blutsumpf-click    { left: 34.30%; top: 46.25%; }
+.steinhof-click     { left: 34.85%; top: 50.05%; }
 
 
 body {
@@ -36,6 +36,7 @@ iframe {
   height: 100vh;
   background: transparent; /* Make iframe element background transparent */
   border: none;
+  overflow: hidden;
 }
 
 #info-frame {
@@ -44,9 +45,13 @@ iframe {
   right: 2vh;
   width: 400px;
   height: 95vh;
+  padding:0px;
+  margin:0 auto;
   border: none;
-  z-index: 1001; /* Above container */
-  background: transparent; /* Transparent iframe */
+  z-index: 1001; 
+  background: transparent; 
+  overflow: hidden;  
+  pointer-events: none;
 }
 
 #iframe-container {
@@ -80,7 +85,6 @@ iframe {
   cursor: grab;
   transition: transform 0.2s ease;
   transform-origin: center center;
-  transform: scale(0.5);
 }
 
 #map-wrapper.dragging {
