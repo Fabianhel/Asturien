@@ -39,3 +39,23 @@ html, body {
   height: 80px;
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
+
+table {
+  width: 60%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+th, td {
+  padding: 1px 11px;
+  border: 1px solid;
+  text-align: left;
+}
+th {
+  font-weight: bold;
+}
+caption {
+  caption-side: top;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
