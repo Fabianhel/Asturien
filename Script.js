@@ -119,4 +119,19 @@ $(document).ready(function () {
 
 	centerMap(); // Call on load
 		
+
+	window.addEventListener("message", (e) => {
+		if(e.data.type === "zoomImage") {
+			const overlay = document.createElement("div");
+			overlay.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;";
+			const zoomedImg = document.createElement("img");
+			zoomedImg.src = e.data.src;
+			zoomedImg.style.cssText = "max-width:90vw; max-height:90vh";
+			overlay.appendChild(zoomedImg);
+			overlay.addEventListener("click", () => overlay.remove());
+			document.body.appendChild(overlay);
+		}
+	});
+
+
 });

@@ -6,6 +6,12 @@ html, body {
   color: black;
 }
 
+#City_Map {
+  height: 320px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 #close-btn {
   position: fixed;
   top: 10px;
