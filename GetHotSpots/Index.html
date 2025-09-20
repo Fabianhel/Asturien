@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Interaktive Karte</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    #main-content {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100vh;
+        background: #eee;
+    }
+    #map-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: transform 0.2s ease;
+        transform-origin: center center;
+    }
+    .toggle-btn {
+      position: absolute;
+      padding: 8px 16px;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .toggle-btn.active {
+      background-color: #d83b01;
+    }
+    .showList-btn {
+      left: 200px;
+      position: absolute;
+      padding: 8px 16px;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    #output {
+      position: absolute;
+      top: 50px;
+      z-index: 10;
+      background-color: black;
+      color: white;
+    }
+</style>
+</head>
+<body>
+
+<div id="main-content">
+    <button id="toggleHotspots" class="toggle-btn">GetPosition deaktiviert</button>
+    <button id="showList" class="showList-btn">Liste anzeigen</button>
+    <div id="output"></div>
+    <div id="map-wrapper">
+        <img id="meinBild" src="https://d3i7ftxev28jeb.cloudfront.net/Webseite_v2.avif" alt="Testbild" style="max-width:100%; height:auto;">
+    </div>
+</div>
+
+<script>
+    let scale = 0.7;
+    const minScale = 0.05;
+    const maxScale = 3;
+    const zoomIntensity = 0.1;
+    
+    let isDragging = false;
+    let startX, startY;
+    let translateX = 0;
+    let translateY = 0;
+    
+    const img = document.getElementById('meinBild');
+    const $wrapper = $("#map-wrapper");
+    
+    // Hilfsfunktion: wendet aktuelle Werte an
+    function updateTransform() {
+      $wrapper.css("transform", `translate(${translateX}px, ${translateY}px) scale(${scale})`);
+    }
+
+    // Leere Liste anlegen
+    const meineListe = [];
+
+
+    // Button "Liste anzeigen"
+    document.getElementById('showList').addEventListener('click', function() {
+      // Variante 1: In der Konsole
+      console.log("Aktuelle Liste:", meineListe);
+
+      // Variante 2: Auf der Seite anzeigen
+      document.getElementById('output').innerHTML = "";
+      document.getElementById('output').innerHTML = meineListe.join("<br>");
+    });
+
+
+
+    // Toggle Button
+    const toggleBtn = document.getElementById('toggleHotspots');
+
+    let GetPostition = false;
+
+    toggleBtn.addEventListener('click', () => {
+      GetPostition = !GetPostition; // Zustand umschalten
+
+      // Button-Text und Stil anpassen
+      toggleBtn.textContent = GetPostition ? 'GetPosition aktiviert' : 'GetPosition deaktiviert';
+      toggleBtn.classList.toggle('active', GetPostition);
+      console.log(GetPostition);
+    });
+
+    
+    // Klick-Handler: Prozentuale Position ausgeben
+    img.addEventListener('click', function(event) {
+
+      if (GetPostition) {
+        const rect = img.getBoundingClientRect();
+        const eingabe = prompt("Bitte Text eingeben:");
+
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        // Verhältnis zwischen angezeigter Größe und Originalgröße
+        const scaleX = img.naturalWidth / rect.width;
+        const scaleY = img.naturalHeight / rect.height;
+        console.log(scaleX);
+
+        // Klickposition in Originalpixel umrechnen
+        const originalX = x * scaleX;
+        const originalY = y * scaleY;
+
+        const xPercent = (originalX / img.naturalWidth) * 100;
+        const yPercent = (originalY / img.naturalHeight) * 100;
+
+
+        meineListe.push(`.${eingabe}-click { left: ${xPercent.toFixed(2)}%; top: ${yPercent.toFixed(2)}%; }`); // Wert ins Array speichern
+        console.log("Gespeichert:");
+        console.log(`.${eingabe}-click { left: ${xPercent.toFixed(2)}%; top: ${yPercent.toFixed(2)}%; }`);
+        }
+    });
+    
+    // Drag-Logik
+    $wrapper.on("mousedown", function (e) {
+      if (e.button !== 0) return; // nur linke Maustaste
+      isDragging = false;
+      startX = e.pageX - translateX;
+      startY = e.pageY - translateY;
+    
+      $(document).on("mousemove.drag", function (e2) {
+        isDragging = true;
+        $wrapper.addClass("dragging");
+        translateX = e2.pageX - startX;
+        translateY = e2.pageY - startY;
+        updateTransform();
+      });
+    
+      $(document).on("mouseup.drag", function () {
+        $(document).off(".drag");
+        $wrapper.removeClass("dragging");
+        setTimeout(() => { isDragging = false; }, 100);
+      });
+    
+      e.preventDefault();
+    });
+    
+    // Zoom mit Mausposition als Fokus
+    $("#main-content").on("wheel", function (e) {
+      e.preventDefault();
+      const rect = $wrapper[0].getBoundingClientRect();
+      const originX = ((e.clientX - rect.left) / rect.width) * 100;
+      const originY = ((e.clientY - rect.top) / rect.height) * 100;
+      $wrapper.css("transform-origin", `${originX}% ${originY}%`);
+    
+      const delta = e.originalEvent.deltaY;
+      if (delta > 0) {
+        scale = Math.max(scale - zoomIntensity, minScale);
+      } else {
+        scale = Math.min(scale + zoomIntensity, maxScale);
+      }
+      updateTransform();
+    });
+    
+    // Initial anwenden
+    updateTransform();
+    </script>
+    
+
+</body>
+</html>

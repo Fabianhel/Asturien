@@ -20,25 +20,40 @@
 		<div id="main-content">
 			<!-- Image map wrapper -->
 			<div id="map-wrapper" >
-				<img src="https://d3i7ftxev28jeb.cloudfront.net/Webseite.png" class="center"/>		
+				<picture>
+					<source srcset="https://d3i7ftxev28jeb.cloudfront.net/Webseite_v2.avif" type="image/avif">
+					<source srcset="https://d3i7ftxev28jeb.cloudfront.net/Webseite_v2.webp" type="image/webp">
+					<img src="https://d3i7ftxev28jeb.cloudfront.net/Webseite_v2.png" type="image/png"/>	
+				</picture>	
 				
 				<!-- Clickable hotspots -->
 				<div class="hotspots">
-					<div class="valblanc-click" 	data-target="Cities/Valblanc.html"></div>
-					<div class="fleuret-click" 		data-target="Cities/Fleuret.html"></div>
-					<div class="dreibach-click" 	data-target="Cities/Dreibach.html"></div>
-					<div class="fortresse-click" 	data-target="Cities/Fortresse_DAmbere.html"></div>
-					<div class="grenzwacht-click" 	data-target="Cities/Grenzwacht.html"></div>
-					<div class="hautville-click" 	data-target="Cities/Hautville.html"></div>
-					<div class="blutsumpf-click" 	data-target="Cities/Lager_Blutsumpf.html"></div>
-					<div class="steinhof-click" 	data-target="Cities/Steinhof.html"></div>
+					<div class="valblanc-click" 		data-target="Cities/Valblanc.html"></div>
+					<div class="fleuret-click" 			data-target="Cities/Fleuret.html"></div>
+					<div class="dreibach-click" 		data-target="Cities/Dreibach.html"></div>
+					<div class="fortresse-click" 		data-target="Cities/Fortresse_DAmbere.html"></div>
+					<div class="grenzwacht-click"	 	data-target="Cities/Grenzwacht.html"></div>
+					<div class="hautville-click" 		data-target="Cities/Hautville.html"></div>
+					<div class="blutsumpf-click" 		data-target="Cities/Lager_Blutsumpf.html"></div>
+					<div class="steinhof-click" 		data-target="Cities/Steinhof.html"></div>
+
+					<div class="rocherdragon-click" 	data-target="Cities/Rocherdragon.html"></div>
+					<div class="couronneax-click" 		data-target="Cities/Couronneax.html"></div>
+					<div class="verdaille-click" 		data-target="Cities/Verdaille.html"></div>
+					<div class="chateupierre-click" 	data-target="Cities/Chateupierre.html"></div>
+					<div class="boisdemorts-click" 		data-target="Cities/Boisdemorts.html"></div>
+					<div class="bärental-click" 		data-target="Cities/Bärental.html"></div>
+					<div class="forstthal-click" 		data-target="Cities/Forstthal.html"></div>
+					<div class="sturmfeld-click" 		data-target="Cities/Sturmfeld.html"></div>
+					<div class="wolkenschloss-click" 	data-target="Cities/Wolkenschloss.html"></div>
+					<div class="eichenhain-click" 		data-target="Cities/Eichenhain.html"></div>
 				</div>
 			</div>
 		</div>
 
 		<!-- Iframe to show dynamic content -->
-		<table cellspacing="0" cellpadding="0" id="iframe-container" >
-			<iframe id="info-frame" allowtransparency="true"></iframe>		
-		</table>	
+		<div id="iframe-container">
+			<iframe id="info-frame" allowtransparency="true"></iframe>        
+		</div>
 	</body>
 </html>

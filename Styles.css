@@ -1,12 +1,23 @@
 /* Invisible clickable regions */
-.valblanc-click     { left: 33.35%; top: 48.37%; }
-.fleuret-click      { left: 36.13%; top: 48.45%; }
-.dreibach-click     { left: 37.85%; top: 49.00%; }
-.fortresse-click    { left: 39.55%; top: 48.05%; }
-.grenzwacht-click   { left: 32.45%; top: 49.20%; }
-.hautville-click    { left: 31.83%; top: 46.85%; }
-.blutsumpf-click    { left: 34.30%; top: 46.25%; }
-.steinhof-click     { left: 34.85%; top: 50.05%; }
+.steinhof-click       { left: 34.54%; top: 50.72%; }
+.grenzwacht-click     { left: 31.93%; top: 49.89%; }
+.valblanc-click       { left: 32.90%; top: 49.03%; }
+.hautville-click      { left: 31.28%; top: 47.51%; }
+.blutsumpf-click      { left: 33.92%; top: 46.87%; }
+.fleuret-click        { left: 35.85%; top: 49.10%; }
+.dreibach-click       { left: 37.71%; top: 49.64%; }
+.fortresse-click      { left: 39.52%; top: 48.73%; }
+
+.rocherdragon-click   { left: 36.28%; top: 45.17%; }
+.couronneax-click     { left: 40.71%; top: 46.06%; }
+.verdaille-click      { left: 44.59%; top: 44.83%; }
+.chateupierre-click   { left: 38.17%; top: 43.72%; }
+.boisdemorts-click    { left: 43.65%; top: 48.77%; }
+.bärental-click       { left: 44.32%; top: 49.86%; }
+.forstthal-click      { left: 40.23%; top: 51.61%; }
+.sturmfeld-click      { left: 35.23%; top: 51.66%; }
+.wolkenschloss-click  { left: 29.61%; top: 52.53%; }
+.eichenhain-click     { left: 41.25%; top: 53.61%; }
 
 
 body {
@@ -79,12 +90,23 @@ iframe {
 }
 
 #map-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 4675px;
+  height: 6822px;
   cursor: grab;
-  transition: transform 0.2s ease;
+  transition: transform 0.1s ease;
   transform-origin: center center;
+}
+
+#map-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+#map-wrapper picture {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 #map-wrapper.dragging {
@@ -102,11 +124,16 @@ iframe {
 
 .hotspots div {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background-color: rgba(255, 0, 0, 0.4);
+  border-width: 3px;
+  border-color: black;
+  border-style: solid;
+  background-color: rgba(191, 191, 191, 0.3);
   pointer-events: auto; /* re-enable events only on actual hotspots */
   cursor: pointer;
   z-index: 10;
+  transform: translate(-50%, -50%);
 }
+
