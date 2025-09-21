@@ -4,24 +4,25 @@ html, body {
   font-family: sans-serif;
   background: transparent;
   color: black;
+  font-size: 4vw;
 }
 
 #City_Map {
-  height: 320px;
+  width: 100%;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 #close-btn {
   position: fixed;
+  font-size: 4.5vw;
   top: 10px;
   right: 10px;
-  padding: 8px 12px;
+  padding: 8px 10px;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
   z-index: 1000;
 }
 
@@ -47,7 +48,6 @@ html, body {
 }
 
 table {
-  width: 60%;
   margin: 20px auto;
   border-collapse: collapse;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -65,3 +65,4 @@ caption {
   font-size: 1.4em;
   margin-bottom: 10px;
 }
+

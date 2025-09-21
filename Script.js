@@ -11,7 +11,7 @@ $(document).ready(function () {
 	let translateX = 0;
 	let translateY = 0;
 	let minScale = 0.15;
-	let maxScale = 2;
+	let maxScale = 1;
 	let zoomIntensity = 0.2;
 
 
@@ -112,11 +112,12 @@ $(document).ready(function () {
 	// Zoom logic
 	$wrapper.on("wheel", function (e) {
 		e.preventDefault();
-	
+
 		clearTimeout(zoomTimeout);
 		zoomTimeout = setTimeout(() => {
 			handleZoom(e);
 		  }, 50);
+
 	});
 
 	function handleZoom(e) {
@@ -133,14 +134,17 @@ $(document).ready(function () {
 
 		let offsetX = 0; 
 		let offsetY = 0;
+		let isMaxScale = false;
 
-		if(newScale != scale ) {
-		offsetX = (-translateX + windowWidth - mouseX) * (newScale/4);
-		offsetY = (-translateY + windowHeight - mouseY) * (newScale/4);
+		if(newScale != scale & !isMaxScale) {
+			offsetX = (-translateX + windowWidth - mouseX) * (newScale/4);
+			offsetY = (-translateY + windowHeight - mouseY) * (newScale/4);
 		} 
+
+		isMaxScale = newScale == scale ? true : false;
 	
-		translateX = translateX + offsetX;//-(mouseX - (windowWidth * newScale))  ; 
-		translateY = translateY + offsetY;//-(mouseY - (windowHeight * newScale)) ;
+		translateX = delta < 0 ? (translateX + offsetX) : (translateX - offsetX);//-(mouseX - (windowWidth * newScale))  ; 
+		translateY = delta < 0 ? (translateY + offsetY) : (translateY - offsetY);//-(mouseY - (windowHeight * newScale)) ;
 
 	
 		scale = newScale;
@@ -166,8 +170,8 @@ $(document).ready(function () {
 			zoomedImg.src = e.data.src;
 			zoomedImg.style.cssText = "max-width:90vw; max-height:90vh";
 			overlay.appendChild(zoomedImg);
-			overlay.addEventListener("click", () => overlay.remove());
 			document.body.appendChild(overlay);
+			overlay.addEventListener("click", () => overlay.remove());
 		}
 	});
 
