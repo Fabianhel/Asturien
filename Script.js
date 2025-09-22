@@ -116,7 +116,7 @@ $(document).ready(function () {
 		clearTimeout(zoomTimeout);
 		zoomTimeout = setTimeout(() => {
 			handleZoom(e);
-		  }, 50);
+		  }, 20);
 
 	});
 
