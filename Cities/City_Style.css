@@ -4,7 +4,7 @@ html, body {
   font-family: sans-serif;
   background: transparent;
   color: black;
-  font-size: 4vw;
+  font-size: 3.5vw;
 }
 
 #City_Map {
@@ -64,5 +64,8 @@ caption {
   caption-side: top;
   font-size: 1.4em;
   margin-bottom: 10px;
+}
+li {
+  word-break: break-word;
 }
 

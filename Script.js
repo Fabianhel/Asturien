@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 	let currentTarget = null;
 	let isDragging = false;
-	let startX, startY, initialLeft = 0, initialTop = 0;
+	let startX, startY;
 
 	let scale = 0.5;
 	let translateX = 0;
@@ -22,10 +22,8 @@ $(document).ready(function () {
 
 	  if (currentTarget === target) {
 		hideIframe();
-		currentTarget = null;
 	  } else {
 		showIframe(target);
-		currentTarget = target;
 	  }
 	});
 
@@ -33,23 +31,23 @@ $(document).ready(function () {
 	//Function to close the iframe
 	window.addEventListener("message", function (event) {
 		if (event.data === "close-iframe") {
-			$("#info-frame").attr("src", "");
 			hideIframe()
-			currentTarget = null;
 		}
 	});
 
 
 	//Show and Hide Iframe
 	function showIframe(src) {
-		$("#iframe-container").show();
+		$("#City-info-container").show();
 		$("#info-frame").attr("src", src);
 		$("#info-frame").css("pointer-events", 'auto');
+		currentTarget = src;
 	}
 	function hideIframe() {
-		$("#iframe-container").hide();
+		$("#City-info-container").hide();
 		$("#info-frame").attr("src", "");
 		$("#info-frame").css("pointer-events", 'none');
+		currentTarget = null;
 	}
   
 
