@@ -18,63 +18,6 @@ $(document).ready(function () {
 	centerMap(); // Call on load
 
 
-	//Show City Information (Iframe)
-	$(".hotspots div").on("click", function () {
-		if (isDragging) return;
-
-		const target = $(this).data("target");
-		const src = "#City-info-container";
-		const frame = "#info-frame";
-
-		if (currentTarget === target) {
-		hideIframe(src, frame);
-		} else {
-		showIframe(src, target, frame);
-		}
-	});
-
-
-
-	//Enlarge City maps 
-	window.addEventListener("message", (e) => {
-		if(e.data.type === "zoomImage") {
-			const overlay = document.createElement("div");
-			overlay.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;";
-			const zoomedImg = document.createElement("img");
-			zoomedImg.src = e.data.src;
-			zoomedImg.style.cssText = "max-width:90vw; max-height:90vh";
-			overlay.appendChild(zoomedImg);
-			document.body.appendChild(overlay);
-			overlay.addEventListener("click", () => overlay.remove());
-		}
-	});
-
-
-	//Function to close the iframe
-	window.addEventListener("message", function (event) {
-		src = event.data
-		if (src != null) {
-			hideIframe(src)
-		}
-	});
-
-
-	//Show and Hide Iframe
-	function showIframe(src, target, frame) {
-		$(src).show();
-		$(frame).attr("src", target);
-		$(frame).css("pointer-events", 'auto');
-		currentTarget = target;
-
-	}
-	function hideIframe(src, frame) {
-		$(src).hide();
-		$(frame).attr("src", "");
-		$(frame).css("pointer-events", 'none');
-		currentTarget = null;
-	}
-
-
 	//update Transform function
 	function updateTransform() {
 		$wrapper.css("transform", `translate(${translateX}px, ${translateY}px) scale(${scale})`);
@@ -125,10 +68,14 @@ $(document).ready(function () {
 		translateX = (windowWidth - mapWidth) / 2;
 		translateY = (windowHeight - mapHeight) / 2;
 		scale = 0.5;
-	
+
 		updateTransform();
 	}
   
+	//Center Button
+	document.getElementById('centerButton').addEventListener('click', () => {
+		centerMap();
+	});
 
 	let zoomTimeout;
 	// Zoom logic
@@ -174,49 +121,5 @@ $(document).ready(function () {
 	}
  
 
-	//Center Button
-	document.getElementById('centerButton').addEventListener('click', () => {
-		centerMap();
-	});
-
-
-	//Quest Button
-	document.getElementById('questButton').addEventListener('click', () => {
-		const target = "Quests/Quest.html";
-		const src = "#Quest-info-container";
-		const frame = "#quest-frame";
-		console.log(target);
-
-		if (currentTarget === target) {
-		hideIframe(src , frame);
-		} else {
-		showIframe(src, target, frame);
-		}
-	});
-
-	//Map Button
-	document.getElementById('mapButton').addEventListener('click', () => {
-		const target = "Maps/MapSelection.html";
-		const src = "#Map-info-container";
-		const frame = "#map-frame";
-		console.log(target);
-
-		if (currentTarget === target) {
-		hideIframe(src , frame);
-		} else {
-		showIframe(src, target, frame);
-		}
-	});
-		
-
-
-	//Function to open a Map
-	window.addEventListener("message", function (event) {
-		console.log(event.data.type)
-		if(event.data.type == "Maps")
-			window.location.href = "Maps/"+ event.data.src + "/" + event.data.src + ".html";
-	});
-
-
-
 });
+

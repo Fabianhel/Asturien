@@ -37,6 +37,7 @@ body {
   width: 10%; 
   margin: 10px;
 }
+
 .button-list button {
   width: 100%;
   padding: 10px;
@@ -50,14 +51,10 @@ body {
   z-index: 100;
 }
 
-
 iframe {
   background: transparent; 
   border: none;
   overflow: hidden;
-}
-
-#info-frame {
   position: fixed;
   width: inherit;
   min-width: inherit;
@@ -75,11 +72,51 @@ iframe {
   min-width: 450px;
   height: 96vh;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-image: url('Cities/Papyurs.jpeg'); /* Background behind iframe */
-  background-size: cover;
-  background-position: center;
+  background-image: url('Cities/Papyurs.jpeg'); 
   z-index: 1000;
   display: none;
+  overflow: hidden;
+}
+
+#Quest-info-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:70vw;
+  height:90vh;
+  transform: translate(15vw, 5vh);
+  background-image: url('Quests/Papyurs.jpeg');
+  border-radius: 4vw;
+  opacity: 95%;
+  background-size: contain;
+  display:none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+#quest-frame {
+  height: 90%;
+  width: 90%;
+  transform: translate(5%, 5%);
+}
+
+#map-frame {
+  height: 90%;
+  width: 90%;
+  transform: translate(5%, 5%);
+}
+
+#Map-info-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:70vw;
+  height:90vh;
+  transform: translate(15vw, 5vh);
+  background-color: rgba(128, 128, 128, 0.9);
+  border-radius: 4vw;
+  display:none;
+  z-index: 1000;
   overflow: hidden;
 }
 
@@ -89,7 +126,6 @@ iframe {
   cursor: grab;
   transition: transform 0.1s ease;
 }
-
 
 #map-wrapper.dragging {
   cursor: grabbing;
